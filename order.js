@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <input type="text" class="form-control mb-2 forwarding-domain" required>
             <div>Domain Type: ${isRegistered ? 'Registered ($15.00)' : 'Own Domain ($0.00)'}</div>
             <div class="mailboxes mb-2" id="mailboxes${domainCount}"></div>
-            <label>Mailboxes (e.g. firstname@, lastname@) we reccommend no more than 3 mailboxes per domain</label>
+            <label>Mailboxes (e.g. firstname@, lastname@) we recommend no more than 3 mailboxes per domain</label>
             <button type="button" class="btn btn-secondary btn-sm mb-2 add-mailbox">Add Mailbox</button>
             <button type="button" class="btn btn-danger btn-sm remove-domain">Remove Domain</button>
             <hr>
