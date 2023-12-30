@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MassMailbox Pricing</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .slider-container { 
+            margin: 20px; 
+            width: 50%; /* Set the container width to 50% of the page */
+        }
+        #price, #totalPrice { font-size: 24px; margin-top: 20px; }
+        .small-print { font-size: 12px; margin-top: 5px; }
+        .slider { 
+            -webkit-appearance: none; 
+            appearance: none; 
+            width: 100%; /* Slider takes full width of its container */
+            height: 25px; 
+            outline: none; 
+            background: linear-gradient(to right, #ddd 50%, #eee 50%); 
+        }
+        .slider::-webkit-slider-thumb { 
+            -webkit-appearance: none; 
+            appearance: none; 
+            width: 35px; 
+            height: 35px; 
+            background: url('mailbox.svg'); 
+        }
+        .slider::-moz-range-thumb { 
+            width: 35px; 
+            height: 35px; 
+            background: url('mailbox.svg'); 
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-container">
+    <label for="mailboxSlider">Select number of mailboxes:</label>
+    <input type="range" min="10" max="500" value="10" class="slider" id="mailboxSlider" step="10">
+    <p>Number of Mailboxes: <span id="numberOfMailboxes">10</span></p>
+    <p id="price">Price per Mailbox: $1.75</p>
+    <p id="totalPrice">Total Price per Month: $17.50</p>
+    <button id="trialButton">Start 3-week Warmup Trial for 10 Mailboxes</button>
+    <p class="small-print">*Free trial does not include domain registration fees.</p>
+    <p class="small-print">Custom prices available for 500+ mailboxes.</p>
+</div>
+
+<script>
+    var slider = document.getElementById("mailboxSlider");
+    var numberOfMailboxes = document.getElementById("numberOfMailboxes");
+    var price = document.getElementById("price");
+    var totalPrice = document.getElementById("totalPrice");
+    var trialButton = document.getElementById("trialButton");
+
+    slider.oninput = function() {
+        numberOfMailboxes.innerHTML = this.value;
+        updatePricing(this.value);
+    }
+
+    function updatePricing(mailboxes) {
+        var perMailboxPrice = 1.75; // default price
+        if (mailboxes >= 50 && mailboxes < 100) {
+            perMailboxPrice = 1.50;
+        } else if (mailboxes >= 100 && mailboxes < 200) {
+            perMailboxPrice = 1.25;
+        } else if (mailboxes >= 200 && mailboxes <= 500) {
+            perMailboxPrice = 1.00;
+        }
+        var total = perMailboxPrice * mailboxes;
+        price.innerHTML = "Price per Mailbox: $" + perMailboxPrice.toFixed(2);
+        totalPrice.innerHTML = "Total Price per Month: $" + total.toFixed(2);
+        trialButton.innerHTML = "Start 3-week Warmup Trial for " + mailboxes + " Mailboxes";
+    }
+</script>
+
+</body>
+</html>
