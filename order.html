@@ -26,12 +26,31 @@
                 <input type="email" class="form-control" id="emailAddress" required>
             </div>
             <div id="domainsSection"></div>
+        <div class="mb-3">
             <button type="button" id="registerDomainButton" class="btn btn-secondary">Register Domain</button>
+            <p class="description">Register a new .com domain with MassMailbox. Registration costs $15.00 per domain per year.</p>
+        </div>
+
+        <div class="mb-3">
             <button type="button" id="addOwnDomainButton" class="btn btn-secondary">Add Own Domain</button>
-            <div id="orderSummary" class="mt-3"></div>
-            <button type="submit" class="btn btn-primary mt-3">View Order</button>
+            <p class="description">Use an existing domain which you currently own. You will need to forward the Name Servers to ours; instructions will be sent after order completion.</p>
+        </div>
+
+        <div id="domainsSection"></div>
+        
+        <div id="orderSummary" class="mt-3"></div>
+        <button type="submit" class="btn btn-primary mt-3">View Order</button>
         </form>
     </div>
+    <style>
+    .description {
+        font-size: 0.9em; /* Adjust the size as needed */
+        color: #555; /* Adjust the color as needed */
+    }
+    .mailbox {
+        width: 50%; /* Set the width of mailbox input fields */
+    }
+</style>
 
     <script src="order.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
