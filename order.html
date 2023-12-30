@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form - MassMailbox</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+        <img src="massmaillogo.png" width="100%" height="50" alt="Logo">
+    </a>
+
+</nav>
+    <div class="container mt-5">
+        <h2>Order Form</h2>
+        <form id="orderForm">
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" required>
+            </div>
+            <div class="mb-3">
+                <label for="emailAddress" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="emailAddress" required>
+            </div>
+            <div id="domainsSection"></div>
+            <button type="button" id="registerDomainButton" class="btn btn-secondary">Register Domain</button>
+            <button type="button" id="addOwnDomainButton" class="btn btn-secondary">Add Own Domain</button>
+            <div id="orderSummary" class="mt-3"></div>
+            <button type="submit" class="btn btn-primary mt-3">View Order</button>
+        </form>
+    </div>
+
+    <script src="order.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
