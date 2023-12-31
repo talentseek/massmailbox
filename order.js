@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     let domainCount = 0;
+    let mailboxCount = 0; // Declare mailboxCount here
 
     function addDomain(isRegistered) {
         domainCount++;
@@ -8,24 +9,26 @@ document.addEventListener('DOMContentLoaded', function() {
         newDomainDiv.classList.add('domain-entry');
         newDomainDiv.innerHTML = `
             <label>Domain Name</label>
-            <input type="text" class="form-control mb-2 domain-name" required>
+            <input type="text" class="form-control mb-2 domain-name" name="domainName${domainCount}" required>
             <label>Forwarding Domain (Website to forward new domain to)</label>
-            <input type="text" class="form-control mb-2 forwarding-domain" required>
+            <input type="text" class="form-control mb-2 forwarding-domain" name="forwardingDomain${domainCount}" required>
             <div>Domain Type: ${isRegistered ? 'Registered ($15.00)' : 'Own Domain ($0.00)'}</div>
             <div class="mailboxes mb-2" id="mailboxes${domainCount}"></div>
-            <label>Mailboxes (e.g. firstname@, lastname@) we recommend no more than 3 mailboxes per domain</label>
+            <label>Mailboxes</label>
             <button type="button" class="btn btn-secondary btn-sm mb-2 add-mailbox">Add Mailbox</button>
             <button type="button" class="btn btn-danger btn-sm remove-domain">Remove Domain</button>
             <hr>
         `;
         domainSection.appendChild(newDomainDiv);
 
-        // Add Mailbox
+         // Add Mailbox
         newDomainDiv.querySelector('.add-mailbox').addEventListener('click', function() {
+            mailboxCount++;
             const mailboxesDiv = document.getElementById(`mailboxes${domainCount}`);
             const mailboxInput = document.createElement('input');
             mailboxInput.type = 'text';
             mailboxInput.classList.add('form-control', 'mb-2', 'mailbox');
+            mailboxInput.name = `mailbox${domainCount}_${mailboxCount}`;
             mailboxesDiv.appendChild(mailboxInput);
         });
 
@@ -43,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
         addDomain(false);
     });
 
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const fullName = document.getElementById('fullName').value;
-        const emailAddress = document.getElementById('emailAddress').value;
+   document.getElementById('viewOrderButton').addEventListener('click', function(e) {
+    e.preventDefault();
+    const fullName = document.getElementById('fullName').value;
+    const emailAddress = document.getElementById('emailAddress').value;
         const domains = document.getElementsByClassName('domain-entry');
         let totalDomainCost = 0;
         let totalMailboxCount = 0;

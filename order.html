@@ -9,49 +9,38 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">
-        <img src="massmaillogo.png" width="100%" height="50" alt="Logo">
-    </a>
-
-</nav>
+        <a class="navbar-brand" href="#">
+            <img src="massmaillogo.png" width="100%" height="50" alt="Logo">
+        </a>
+    </nav>
     <div class="container mt-5">
         <h2>Order Form</h2>
-        <form id="orderForm">
+        <form id="orderForm" action="https://getform.io/f/66c5d589-b916-4e6e-a97d-f07cadd2c6cc" method="POST">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" required>
+                <input type="text" class="form-control" id="fullName" name="fullName" required>
             </div>
             <div class="mb-3">
                 <label for="emailAddress" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="emailAddress" required>
+                <input type="email" class="form-control" id="emailAddress" name="emailAddress" required>
             </div>
             <div id="domainsSection"></div>
-        <div class="mb-3">
             <button type="button" id="registerDomainButton" class="btn btn-secondary">Register Domain</button>
-            <p class="description">Register a new .com domain with MassMailbox. Registration costs $15.00 per domain per year.</p>
-        </div>
-
-        <div class="mb-3">
             <button type="button" id="addOwnDomainButton" class="btn btn-secondary">Add Own Domain</button>
-            <p class="description">Use an existing domain which you currently own. You will need to forward the Name Servers to ours; instructions will be sent after order completion.</p>
-        </div>
-
-        <div id="domainsSection"></div>
-        
-        <div id="orderSummary" class="mt-3"></div>
-        <button type="submit" class="btn btn-primary mt-3">View Order</button>
+            <div id="orderSummary" class="mt-3"></div>
+            <button type="button" class="btn btn-info mt-3" id="viewOrderButton">View Order</button>
+            <button type="submit" class="btn btn-primary mt-3">Complete Order</button>
         </form>
     </div>
     <style>
-    .description {
-        font-size: 0.9em; /* Adjust the size as needed */
-        color: #555; /* Adjust the color as needed */
-    }
-    .mailbox {
-        width: 50%; /* Set the width of mailbox input fields */
-    }
-</style>
-
+        .description {
+            font-size: 0.9em; 
+            color: #555; 
+        }
+        .mailbox {
+            width: 50%; 
+        }
+    </style>
     <script src="order.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
