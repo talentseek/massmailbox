@@ -4,60 +4,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MassMailbox</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="email.png">
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .navbar { background-color: #f8f9fa; }
-        .full-height-section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .hero-section { background-color: #eee; }
-        .slider-container { 
-    margin: 20px auto; 
-    width: 50%; 
-    text-align: left; /* Aligns content to the left */
-}
 
-/* Optional: If the label and slider are not aligning perfectly */
-.slider-container label {
-    display: block; /* Makes the label take the full width */
-    margin-bottom: 10px; /* Adds some space between the label and the slider */
-}
-        .btn-primary { background-color: #007bff; border-color: #007bff; }
-        .small-print { font-size: 12px; margin-top: 5px; }
-        .slider { 
-    -webkit-appearance: none; 
-    appearance: none; 
-    width: 100%; 
-    height: 37.5px; /* Increased from 25px to 37.5px */
-    outline: none; 
-    background: linear-gradient(to right, #ddd 50%, #eee 50%); 
-}
-.slider::-webkit-slider-thumb { 
-    -webkit-appearance: none; 
-    appearance: none; 
-    width: 52.5px; /* Increased from 35px to 52.5px */
-    height: 52.5px; /* Increased from 35px to 52.5px */
-    background: url('mailbox.svg'); 
-}
-.slider::-moz-range-thumb { 
-    width: 52.5px; /* Increased from 35px to 52.5px */
-    height: 52.5px; /* Increased from 35px to 52.5px */
-    background: url('mailbox.svg'); 
-}
-    </style>
+    <link rel="icon" type="image/png" href="email.png">
+<style>
+    body { 
+        font-family: Arial, sans-serif; 
+        padding-top: 80px; /* Adjust to match the height of your navbar */
+    }
+
+    .navbar { 
+        background-color: #f8f9fa; 
+    }
+
+    .navbar-brand {
+        margin-left: 20px; /* Adjust as needed */
+    }
+
+    .full-height-section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .hero-section { 
+        background-color: #eee; 
+    }
+
+    .slider-container { 
+        margin: 20px auto; 
+        width: 50%; 
+        text-align: left;
+    }
+
+    .slider-container label {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary { 
+        background-color: #007bff; 
+        border-color: #007bff; 
+    }
+
+    .small-print { 
+        font-size: 12px; 
+        margin-top: 5px; 
+    }
+
+    .slider { 
+        -webkit-appearance: none; 
+        appearance: none; 
+        width: 100%; 
+        height: 37.5px;
+        outline: none; 
+        background: linear-gradient(to right, #ddd 50%, #eee 50%);
+    }
+
+    .slider::-webkit-slider-thumb { 
+        -webkit-appearance: none; 
+        appearance: none; 
+        width: 52.5px;
+        height: 52.5px;
+        background: url('mailbox.svg');
+    }
+
+    .slider::-moz-range-thumb { 
+        width: 52.5px;
+        height: 52.5px;
+        background: url('mailbox.svg'); 
+    }
+
+    li {
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        padding-bottom: 10px;
+    }
+
+    #mailboxes { 
+        padding-top: 20px; /* Padding below the slider */
+    }
+
+    .accordion-item {
+        margin-bottom: 1rem; /* Adds bottom margin for spacing between items */
+    }
+
+    .accordion-header {
+        padding: 0.5rem 1rem; /* Consistent padding for headers */
+        border-bottom: 1px solid #ddd; /* Border for separation */
+    }
+
+    .accordion-button {
+        width: 100%; 
+        text-align: left;
+        background-color: transparent; /* Clear background */
+        color: inherit; /* Inherits font color */
+        border: none; /* Removes border */
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: #f8f9fa; /* Color when expanded */
+        color: #000; /* Text color when expanded */
+    }
+
+    .accordion-button.collapsed {
+        background-color: transparent;
+        color: inherit;
+    }
+
+    .accordion-body {
+        padding: 1rem; /* Consistent padding inside the accordion body */
+    }
+
+    /* Remove the bottom border from the last accordion header */
+    .accordion-flush .accordion-item:last-child .accordion-header {
+        border-bottom: 0;
+    }
+</style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">
-        <img src="massmaillogo.png" width="100%" height="50" alt="Logo">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow p-3">
+    <a class="navbar-brand" href="https://massmailbox.com/"><img src="massmaillogo.png" width="100%" height="50" alt="Logo">
     </a>
     <div class="collapse navbar-collapse justify-content-end"> <!-- This class aligns items to the end (right) -->
         <ul class="navbar-nav">
@@ -76,10 +149,9 @@
         </ul>
     </div>
 </nav>
-
 <div id="hero" class="full-height-section">
-    <h1>Scale your cold outreach with MassMailbox</h1>
-    <p>Unlock email superpowers with MassMailbox! Enjoy unbeatable deliverability rates without the hefty price tag of Google and Outlook.</p>
+    <h1>Scale your cold outreach with MassMailbox</h1><br>
+    <h5>Unlock email superpowers with MassMailbox! Enjoy unbeatable deliverability rates without the hefty price tag of Google and Outlook.</h5>
     <a href="#how-it-works" class="btn btn-primary btn-lg mt-4">Learn More</a> <!-- Learn More Button -->
     
     <!-- Image Inserted Below the Button -->
@@ -110,12 +182,11 @@
             </div>
             <div class="col-md-6"><br><br><br><br><br>
                 <h2>How It Works</h2>
-                <p>MassMailbox simplifies your email outreach. <br>Choose your desired mailbox count, enjoy rapid setup, and start reaching out to your audience with high deliverability and lower costs.</p>
-
                 <ul align="left">
-                    <li>Select a plan that suits your business needs.</li>
-                    <li>Customize your mailbox setup with ease.</li>
-                    <li>Start your campaign with confidence, backed by our robust infrastructure.</li>
+                    <li>Begin by completing a form to receive domain suggestions for purchase, along with options to specify email names.</li>
+                    <li>Following your selections, we seamlessly configure each mailbox, optimizing for deliverability with essential protocols such as SPF, DMARC, DKIM records. Additionally, it sets up forwarding options and custom tracking domains to enhance your email efficiency.</li>
+                    <li>Receive a CSV file, ready for import into email sending platforms such as Instantly or Smartlead.</li>
+                    <li>Payment for mailboxes commences only after they have been fully warmed up and are ready for use.</li>
                 </ul>
                 <a href="#sign-up" class="btn btn-primary btn-lg mt-4">Get Started</a>
             </div>
@@ -129,61 +200,176 @@
         <div class="slider-container">
             <label for="mailboxSlider">Select number of mailboxes:</label>
             <input type="range" min="10" max="500" value="10" class="slider" id="mailboxSlider" step="10">
-            <p>Number of Mailboxes: <span id="numberOfMailboxes">10</span></p>
+            <p id="mailboxes">Number of Mailboxes: <span id="numberOfMailboxes">10</span></p>
             <p id="price">Price per Mailbox: $1.75</p>
             <p id="totalPrice">Total Price per Month: $17.50</p>
+            <p class="small-print">Custom prices available for 500+ mailboxes</p>
+            <div class="text-center">
             <a href="order.html"><button id="trialButton" class="btn btn-primary btn-lg mt-4">Start 3-week Free Warmup Trial for 10 Mailboxes</button></a>
-            <p class="small-print">*Free trial does not include domain registration fees when registering new domain names.</p>
-            <p class="small-print">Custom prices available for 500+ mailboxes.</p>
-        </div>
+        <br>
+            <p class="small-print">Free trial does not include domain registration fees when registering new domain names.</p>
+        </div></div>
     </div>
 
 
-<div id="faq" class="full-height-section">
+<div id="faq" class="container mt-4">
     <h2>Frequently Asked Questions</h2>
-    <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion" id="accordionFAQ">
+
         <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed text-start" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                    What services does MassMailbox offer?
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    What outcomes can I expect with MassMailbox?
                 </button>
             </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse show text-start" aria-labelledby="flush-headingOne">
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
                 <div class="accordion-body">
-                    MassMailbox offers a comprehensive suite of email creation and management services tailored for businesses and marketers focused on cold outreach. Our services include creating bulk email accounts, ensuring high deliverability rates, and providing a user-friendly platform for managing your email campaigns.
+                    <p>Utilizing MassMailbox will lead to better email deliverability, heightened engagement rates, and improved overall campaign effectiveness. This results in more impactful outreach, potentially increasing your customer base and sales.</p>
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed text-start" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    How can I ensure my emails don't end up in the spam folder?
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    How does the free trial with MassMailbox function?
                 </button>
             </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse text-start" aria-labelledby="flush-headingTwo">
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
                 <div class="accordion-body">
-                    To prevent your emails from landing in spam folders, MassMailbox employs advanced email infrastructure with optimized settings such as DKIM, DMARC, and SPF records. Additionally, we provide best practice guidelines to follow when crafting your emails, which significantly improve your deliverability rates.
+                    <p>Every new mailbox ordered via MassMailbox includes a three-week trial, allowing you to warm up the email accounts with your chosen email sending tool.</p>
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed text-start" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    Is there a limit to the number of emails I can send?
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Is MassMailbox exclusively compatible with Instantly and Smartlead?
                 </button>
             </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse text-start" aria-labelledby="flush-headingThree">
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
                 <div class="accordion-body">
-                    MassMailbox does not impose a strict limit on the number of emails you can send. However, we encourage responsible email practices that align with our guidelines to maintain the integrity of your outreach efforts and ensure the highest deliverability.
+                    <p>Currently, MassMailbox is designed to work with Instantly and Smartlead. When you order, we provide a CSV file for easy integration with these platforms.</p>
                 </div>
             </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Is MassMailbox exclusively compatible with Instantly and Smartlead?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    <p>Currently, MassMailbox is designed to work with Instantly and Smartlead. When you order, we provide a CSV file for easy integration with these platforms.</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    What sets MassMailbox apart from Google Workspace or Outlook?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    <p>MassMailbox is specifically engineered for large-scale email campaigns, offering superior deliverability, unique cold outreach features, and flexible account management. Additionally, you can save up to $7 per email account monthly compared to traditional services.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    How reliable is email delivery with MassMailbox?
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    <p>We ensure top-tier deliverability by leveraging advanced email infrastructure technologies such as SPF, DKIM, and DMARC, coupled with best practice guidelines.</p>
+                </div>
+            </div>
+        </div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingSeven">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            Is it necessary to purchase domains through MassMailbox?
+        </button>
+    </h2>
+    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+            While we offer domain services, clients are also welcome to use their existing domains for seamless campaign integration
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingEight">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+            Can I use my existing domains with MassMailbox?
+        </button>
+    </h2>
+    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+            Yes, you can easily integrate your own domains into our platform for an efficient campaign management experience.
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingNine">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+            What flexibility does MassMailbox offer in terms of service plans?
+        </button>
+    </h2>
+    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+            MassMailbox provides adaptable plans, allowing you to scale services up or down based on your evolving business requirements.
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingTen">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+            Could you describe the initial setup process with MassMailbox?
+        </button>
+    </h2>
+    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+            Starting with MassMailbox is straightforward: choose your plan, integrate your domains, and begin designing your email campaigns.
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingEleven">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+            How is the email infrastructure at MassMailbox designed?
+        </button>
+    </h2>
+    <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+            Our email infrastructure is crafted for scalability and high deliverability, utilizing the latest technology to manage extensive email campaigns effectively.
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwelve">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+            What are the email sending capacities with MassMailbox?
+        </button>
+    </h2>
+    <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+            MassMailbox caters to high-volume email sending, tailored to meet your business's specific campaign needs.
+        </div>
+    </div>
+</div>
+    </div>
+</div>
 
 
 <div id="sign-up" class="full-height-section d-flex align-items-center">
@@ -229,30 +415,7 @@
         </div>
     </section>
 
-    <div class="container text-center text-md-start mt-5">
-        <div class="row mt-3">
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 class="text-uppercase fw-bold mb-4">
-                    Links
-                </h6>
-                <p><a href="#how-it-works" class="text-reset">How It Works</a></p>
-                <p><a href="#pricing" class="text-reset">Pricing</a></p>
-                <p><a href="#faq" class="text-reset">FAQ</a></p>
-            </div>
-
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 class="text-uppercase fw-bold mb-4">
-                    Connect
-                </h6>
-                <p><a href="https://www.linkedin.com" class="me-4 text-reset">
-                <i class="fab fa-xl fa-linkedin"></i> <!-- Instagram Icon -->
-            </a></p>
-                            <p><a href="https://www.linkedin.com" class="me-4 text-reset">
-                <i class="fa-brands fa-xl fa-x-twitter"></i> <!-- Instagram Icon -->
-            </a></p>
-            </div>
-        </div>
-    </div>
+   
 
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
         © 2023 MassMailbox. All rights reserved.
@@ -261,6 +424,6 @@
 
 <!-- FontAwesome for Instagram Icon -->
 <script src="https://kit.fontawesome.com/f3af894987.js" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
