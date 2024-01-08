@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Inner Page - Arsha Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Arsha
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html"><img src="assets/img/massmaillogowhite.png"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">How it works</a></li>
+          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
+          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+        <style>
+        .order-summary {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+  </header><!-- End Header -->
+<main id="main">
+    <!-- Breadcrumbs Section -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>Order Form</li>
+            </ol>
+            <h2>Order Form</h2>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section class="inner-page">
+        <div class="container">
+            <h1>MassMailbox Order Form</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="orderForm" class="form">
+                        <div class="form-group mb-3">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="emailPlatform">Email Platform:</label>
+                            <select id="emailPlatform" name="emailPlatform" class="form-select">
+                                <option value="Smartlead">Smartlead</option>
+                                <option value="Instantly">Instantly</option>
+                            </select>
+                        </div>
+                        <button type="button" id="addDomainButton" class="btn btn-primary mb-2">Add Domain</button>
+                        <div id="domains" class="mb-3"></div>
+                        <input type="submit" value="Complete Order" class="btn btn-success">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h2>Order Summary</h2>
+                    <div id="orderSummary" class="order-summary p-3 border rounded"></div>
+                </div>
+            </div>
+        </div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    let domains = [];
+
+    document.getElementById('addDomainButton').addEventListener('click', function() {
+        const domainIndex = domains.length;
+        domains.push({ name: '', forwarding: '', register: false, mailboxes: [] });
+        addDomainDiv(domainIndex);
+    });
+
+    function addDomainDiv(domainIndex) {
+        const domainDiv = document.createElement('div');
+        domainDiv.id = `domain_${domainIndex}`;
+        domainDiv.className = 'domain mb-3';
+        domainDiv.innerHTML = `
+            <div class='form-group mb-2'>
+                <input type='text' placeholder='Domain Name' name='domainName_${domainIndex}' class='form-control'>
+                <input type='text' placeholder='Forwarding Domain' name='forwardingDomain_${domainIndex}' class='form-control'>
+                <div class="form-check mt-2">
+                    <input type='checkbox' class='form-check-input' id='registerDomain_${domainIndex}' name='registerDomain_${domainIndex}'>
+                    <label class="form-check-label" for='registerDomain_${domainIndex}'>Register New Domain</label>
+                </div>
+            </div>
+            <button type='button' onclick='addMailbox(${domainIndex})' class='btn btn-secondary mb-2'>Add Mailbox</button>
+            <div id='mailboxes_${domainIndex}' class='mb-3'></div>
+        `;
+        document.getElementById('domains').appendChild(domainDiv);
+
+        attachDomainInputListeners(domainIndex);
+    }
+
+    function attachDomainInputListeners(domainIndex) {
+        const domainDiv = document.getElementById(`domain_${domainIndex}`);
+        domainDiv.querySelector(`input[name='domainName_${domainIndex}']`).addEventListener('input', function() {
+            domains[domainIndex].name = this.value.trim();
+            updateOrderSummary();
+        });
+        domainDiv.querySelector(`input[name='forwardingDomain_${domainIndex}']`).addEventListener('input', function() {
+            domains[domainIndex].forwarding = this.value.trim();
+            updateOrderSummary();
+        });
+        domainDiv.querySelector(`input[name='registerDomain_${domainIndex}']`).addEventListener('change', function() {
+            domains[domainIndex].register = this.checked;
+            updateOrderSummary();
+        });
+    }
+
+    window.addMailbox = function(domainIndex) {
+        const mailboxIndex = domains[domainIndex].mailboxes.length;
+        domains[domainIndex].mailboxes.push('');
+        addMailboxDiv(domainIndex, mailboxIndex);
+    };
+
+    function addMailboxDiv(domainIndex, mailboxIndex) {
+        const mailboxDiv = document.createElement('div');
+        mailboxDiv.id = `mailbox_${domainIndex}_${mailboxIndex}`;
+        mailboxDiv.className = 'form-group mb-2';
+        mailboxDiv.innerHTML = `
+            <input type='text' placeholder='Mailbox Name' name='mailboxName_${domainIndex}_${mailboxIndex}' class='form-control'>
+        `;
+        document.getElementById(`mailboxes_${domainIndex}`).appendChild(mailboxDiv);
+
+        mailboxDiv.querySelector('input').addEventListener('input', function() {
+            domains[domainIndex].mailboxes[mailboxIndex] = this.value.trim();
+            updateOrderSummary();
+        });
+    }
+
+    function updateOrderSummary() {
+        let totalDomainCost = 0;
+        let totalMailboxCost = 0;
+        let totalMailboxes = 0;
+        let formattedSummary = '';
+
+        domains.forEach(domain => {
+            if (domain.register) {
+                totalDomainCost += 12; // Assuming $12 for domain registration
+            }
+            totalMailboxes += domain.mailboxes.length;
+
+            formattedSummary += `Domain: ${domain.name}, Forwarding: ${domain.forwarding}, Register: ${domain.register ? 'Yes' : 'No'}, Mailboxes: ${domain.mailboxes.join(', ')}\n`;
+        });
+
+        totalMailboxCost = calculateMailboxCost(totalMailboxes);
+
+        formattedSummary += `Total Domain Registration Fees: $${totalDomainCost.toFixed(2)}\n`;
+        formattedSummary += `Total Mailbox Fees: $${totalMailboxCost.toFixed(2)}\n`;
+        formattedSummary += `Total Number of Mailboxes: ${totalMailboxes}\n`;
+
+        const orderSummaryDiv = document.getElementById('orderSummary');
+        orderSummaryDiv.textContent = formattedSummary;
+
+        updateDomainDataInput(JSON.stringify(domains));
+    }
+
+    function calculateMailboxCost(totalMailboxes) {
+        if (totalMailboxes <= 49) {
+            return totalMailboxes * 1.75;
+        } else if (totalMailboxes <= 99) {
+            return totalMailboxes * 1.50;
+        } else if (totalMailboxes <= 199) {
+            return totalMailboxes * 1.25;
+        } else {
+            return totalMailboxes * 1.00;
+        }
+    }
+
+    function updateDomainDataInput(dataString) {
+        let domainDataInput = document.getElementById('domainData');
+        if (!domainDataInput) {
+            domainDataInput = document.createElement('input');
+            domainDataInput.type = 'hidden';
+            domainDataInput.id = 'domainData';
+            domainDataInput.name = 'domainData';
+            document.getElementById('orderForm').appendChild(domainDataInput);
+        }
+        domainDataInput.value = dataString;
+    }
+
+    emailjs.init("IJH8Fig-Kw72k-KcW"); // Replace with your actual EmailJS public key
+
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        emailjs.sendForm('service_yzmsej5', 'template_yvgx87b', this)
+            .then(function() {
+                console.log('SUCCESS!');
+                alert('Order submitted successfully!');
+            }, function(error) {
+                console.log('FAILED...', error);
+                alert('Failed to send the order. Please try again.');
+            });
+    });
+});
+
+</script>
+
+    </section>
+</main>
+
+
+   <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>MassMailbox</h3>
+            <p>
+              <strong>Email:</strong> info@massmailbox.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Learn More</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">How it works</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Get Started</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#pricing">Pricing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Sign Up</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MassMailbox</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+</body>
+
+</html>
